@@ -67,6 +67,17 @@ hr {
     font-size: 50px;
     padding-top: 5px;
     padding-bottom: 5px;
+    width: 85%;
+    display: inline-block;
+}
+
+.mainlogo {
+    background-color: red;
+}
+
+.mainlogo>img {
+    max-width: 30%;
+    height: auto;
 }
 
 .pagetitle {
