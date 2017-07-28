@@ -1,5 +1,10 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
 /* 
-    Created on : Jul 26, 2017, 5:55:31 PM
+    Created on : Jul 27, 2017, 11:06:50 PM
     Author     : christinedai
 */
 
@@ -36,10 +41,6 @@ hr {
     width: 50%;
 }
 
-.mainhr {
-    width: 30%;
-}
-
 .uselessnav {
     height: 5vh;
     width: 85%;
@@ -53,23 +54,6 @@ hr {
     padding-bottom: 20px;
 }
 
-.mainmenu.pagetitle {
-    font-size: 70px !important;
-}
-
-.mainmenu {
-    font-size: 50px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 85%;
-}
-
-.mainlogo>img {
-    width: 30%;
-    max-width: 250px;
-    min-width: 200px;
-    height: auto;
-}
 .pagetitle {
   font-size: 50px;
 }
@@ -83,25 +67,14 @@ hr {
 .projecttitle {
     font-size: 30px;
     margin-bottom: -10px;
+    color: white !important;
+}
+
+.projecttitle>a:visited {
+    color: white !important;
 }
 
 .projectdesc {
     font-size: 20px;
     color: #898989;
-}
-
-.gallerytitle {
-    font-size: 30px;
-}
-
-.galleryimg {
-    padding: 5px 5px 5px 5px;
-}
-
-.aboutdesc {
-    font-size: 18px;
-}
-
-.contactinfo {
-    font-size: 18px;
 }
