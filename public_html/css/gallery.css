@@ -74,6 +74,8 @@ hr {
 .gallerycontent>img {
     margin: 5px 5px 5px 5px;
     border-radius: 20px;
+    width: auto;
+    height: 150px;
 }
 
 .gallerycontent>img:hover {
@@ -96,11 +98,12 @@ hr {
 
 /* coded with help from W3Schools */
 .modalimg {
-    margin-top: 5%;
+    margin-top: 50px;
     margin-right: auto;
     margin-left: auto;
     display: block;
-    max-width: 80%;
+    width: 100%;
+    height: auto;
 }
 
 .modalclose {
@@ -113,9 +116,16 @@ hr {
     cursor: pointer;
 }
 
+.modalcontent {
+    width: 95%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
 /* coded with help from W3Schools */
-@media only screen and (max-width: 700px){
-    .modalimg {
+@media only screen {
+    .modalcontent {
         max-width: 100%;
     }
 }
