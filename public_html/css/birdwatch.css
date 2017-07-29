@@ -1,0 +1,49 @@
+/* 
+    Created on : Jul 28, 2017, 9:16:10 PM
+    Author     : christinedai
+*/
+
+body {
+    background-color: #fef2cf;
+    width: 100%;
+}
+
+.left, .middle, .right {
+    position: absolute;
+    width: 30%;
+    text-align: center;
+}
+
+.left {
+    background-color: blue;
+    height: 100%;
+    left: 5%;
+    top: 0;
+}
+
+.middle {
+    background-color: green;
+    height: 100%;
+    left: 35%;
+    top: 0;
+}
+
+.right {
+    background-color: red;
+    height: 100%;
+    left: 65%;
+    top: 0;
+}
+
+.stats {
+    background-color: pink;
+}
+
+.fieldjournal {
+    background-color: yellow;
+}
+
+.mainclick, .shopitem1title {
+    cursor: pointer;
+    user-select: none;
+}
