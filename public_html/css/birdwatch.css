@@ -3,47 +3,145 @@
     Author     : christinedai
 */
 
+* {
+    font-family: sans-serif;
+}
+
 body {
     background-color: #fef2cf;
     width: 100%;
+}
+
+p {
+    margin: 0;
+    padding: 0;
 }
 
 .left, .middle, .right {
     position: absolute;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #baad86;
+    height: calc(100% - 10px);
 }
 
 .left {
-    background-color: blue;
-    height: 100%;
+    background-color: #fef2cf;
     left: 5%;
     top: 0;
 }
 
 .middle {
-    background-color: green;
-    height: 100%;
+    background-color: #fef2cf;
     left: 35%;
     top: 0;
 }
 
 .right {
-    background-color: red;
-    height: 100%;
+    background-color: #fef2cf;
     left: 65%;
     top: 0;
 }
 
 .stats {
     background-color: pink;
+    height: 20%;
 }
 
 .fieldjournal {
     background-color: yellow;
+    height: 80%;
 }
 
-.mainclick, .shopitem1title {
+.mainclick, .shopitem1 {
     cursor: pointer;
     user-select: none;
+}
+
+.mainclick {
+    margin-top: 50px; 
+}
+
+.mainclick>img {
+    width: 50%;
+}
+
+.shopitem1 {
+    background-color: purple;
+    height: 15%;
+}
+
+.shopitem1info {
+    display: inline-block;
+    background-color: navajowhite;
+    height: 100%;
+    width: 70%;
+    float: left;
+}
+
+.shopitem1image {
+    display: inline-block;
+    height: 100%;
+    width: 30%;
+    float: left;
+}
+
+.shopitem1image>img {
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    font-size: 25px;
+    height: 35px;
+    background-color: tomato;
+}
+
+.rate {
+    background-color: indianred;
+}
+
+.totalcount {
+    background-color: olive;
+}
+
+.shopcontents {
+    height: calc(100% - 35px);
+    background-color: darkgoldenrod;
+}
+
+.gametitle {
+    font-size: 30px;
+    background-color: gray;
+}
+
+.fieldjournalentries {
+    text-align: left;
+    background-color: hotpink;
+    overflow-y: scroll;
+    height: 20%;
+}
+
+.fieldjournalpage {
+    background-color: aqua;
+    height: calc(80% - 35px);
+}
+
+.entryclose {
+    display: inline-block;
+    float: left;
+    font-size: 30px;
+    background-color: firebrick;
+}
+
+.entryimage {
+    background-color: plum;
+    height: 40%;
+}
+
+.entryinfo {
+    background-color: khaki;
+    height: 60%;
 }

@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <title>Birdwatching Simulator X000</title>
         <link href="css/birdwatch.css" rel="stylesheet" type="text/css"/>
+        <script src="js/HackTimer.js" type="text/javascript"></script>
         <script src="js/jquery-3.2.1.js" type="text/javascript"></script>
         <script src="js/birdwatch.js" type="text/javascript"></script>
         <meta charset="UTF-8">
@@ -16,37 +17,89 @@ and open the template in the editor.
     <body>
         <div class="left">
             <div class="stats">
+                <p class="statstitle title">
+                    Stats
+                </p>
                 <p class="totalcount">
-                    Total number of X created goes here (X unique).
+                    0 birds seen (0 unique)
                 </p>
                 <p class="rate">
-                    N X being made per second.
+                    Attracting 0 birds per second
                 </p>
             </div>
             <div class="fieldjournal">
-                Field journal goes here.
+                <p class="fieldjournaltitle title">
+                    Field Journal
+                </p>
+                <div class="fieldjournalentries">
+                    <ul>
+                        <li>
+                            Entry
+                        </li>
+                        <li>
+                            Entry
+                        </li>
+                        <li>
+                            Entry
+                        </li>
+                        <li>
+                            Entry
+                        </li>
+                        <li>
+                            Entry
+                        </li>
+                        <li>
+                            Entry
+                        </li>
+                        <li>
+                            Entry
+                        </li>
+                        <li>
+                            Entry
+                        </li>
+                    </ul>
+                </div>
+                <div class="fieldjournalpage">
+                    <p class="entryclose">
+                        X
+                    </p>
+                    <p class="entryimage">
+                        Entry picture here (normally hidden).
+                    </p>
+                    <p class="entryinfo">
+                        Entry info here (normally hidden).
+                    </p>
+                </div>
             </div>
         </div>
         <div class="middle">
-            <!--<div class="hidden fieldjournalpage">
-                Hidden content for each journal entry.
-            </div>-->
+            <p class="gametitle title">
+                Birdwatcher Simulator X000
+            </p>
             <p class="mainclick">
-                Thing that generates more X goes here.
+                <img src="img/birdwatch/birdseed.png" alt=""/>
             </p>
         </div>
         <div class="right">
-            <p class="shoptitle">
-                Shop.
+            <p class="shoptitle title">
+                Shop
             </p>
             <div class="shopcontents">
                 <div class="shopitem1">
-                    <p class="shopitem1title">
-                        Item 1.
-                    </p>
-                    <p class="shopitem1desc">
-                        Item generates N X per second. Costs M.
-                    </p>
+                    <div class="shopitem1image">
+                        <img src="img/birdwatch/feeder.png" alt=""/>
+                    </div>     
+                    <div class="shopitem1info">
+                        <p class="shopitem1title itemtitle">
+                            Bird Feeder
+                        </p>
+                        <p class="shopitem1desc">
+                            Attracts .5 birds per second.
+                        </p>
+                        <p class="shopitem1price">
+                            Costs 10.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
