@@ -5,7 +5,6 @@
 
 * {
     font-family: sans-serif;
-    overflow-x: hidden;
 }
 
 body {
@@ -134,7 +133,7 @@ li {
 }
 
 .entryclose {
-    display: inline-block;
+    display: none;
     float: left;
     font-size: 30px;
     margin-left: 5px;
@@ -142,11 +141,17 @@ li {
 }
 
 .entryimage {
-    height: 40%;
+    margin-top: calc(2% + 30px);
+    height: 50%;
+}
+
+.entryimage>img {
+    height: 100%;
 }
 
 .entryinfo {
-    height: 60%;
+    margin-top: 5%;
+    height: 80%;
 }
 
 .itemtitle {
@@ -155,4 +160,8 @@ li {
 
 .shopitem1desc, .shopitem1quantity {
     margin-top: 5%;
+}
+
+.hidden {
+    display: none;
 }

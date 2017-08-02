@@ -12,6 +12,7 @@ var uniqueRunningTotal = 0;
 var clickmeUpcount = 1;
 // increment per second from the autotools
 var autoUpcount = 0;
+
 // how much item1 costs currently
 var item1cost = 10;
 // rate of increase by item1
@@ -93,6 +94,13 @@ $(document).ready(function() {
     
     $("li").click(function() {
        //$(".entryimage, .entryinfo, .entryclose").css("display", "block"); 
+       var species = $(this).text().toLowerCase().trim();
+       // image source
+       var img = "img/birdwatch/" + species + ".png";
+       // text entry
+       var text = $('.' + species).text();
+       $(".entryimage>img").attr("src", img);
+       $(".entryinfo").text(text);
        $(".entryimage, .entryinfo, .entryclose").fadeIn(200);
     });
     
