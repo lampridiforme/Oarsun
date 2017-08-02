@@ -16,6 +16,8 @@ var autoUpcount = 0;
 var item1cost = 10;
 // rate of increase by item1
 var item1rate = .5;
+// number of item1s
+var item1quantity = 0;
 
 // placeholder for dynamic upcounting
 function displayTotal() {
@@ -24,16 +26,20 @@ function displayTotal() {
 
 function displayRate() {
     if(autoUpcount <= 1) {
-        $(".rate").text("Attracting about " + Math.round(autoUpcount) + " bird per second.");
+        $(".rate").text("Attracting about " + Math.round(autoUpcount) + " bird per second");
     }
     else {
-        $(".rate").text("Attracting " + autoUpcount + " birds per second.");   
+        $(".rate").text("Attracting " + autoUpcount + " birds per second");   
     }
 }
 
 function displayNewCostItem1() {
     // TODO: figure out how to save original text and then use it
     $(".shopitem1price").text("Costs " + Math.round(item1cost));
+}
+
+function displayItem1Quantity() {
+    $(".shopitem1quantity").text("You have " + item1quantity);
 }
 
 function calcNewCost(originalcost) {
@@ -73,10 +79,21 @@ $(document).ready(function() {
             runningTotal -= item1cost;
             item1cost = calcNewCost(item1cost);
             autoUpcount += item1rate;
+            item1quantity++;
+            displayItem1Quantity();
             displayRate();
             displayTotal();
             displayNewCostItem1();
         }
+    });
+    
+    $(".entryclose").click(function() {
+        $(".entryimage, .entryinfo, .entryclose").fadeOut(200); 
+    });
+    
+    $("li").click(function() {
+       //$(".entryimage, .entryinfo, .entryclose").css("display", "block"); 
+       $(".entryimage, .entryinfo, .entryclose").fadeIn(200);
     });
     
 });
