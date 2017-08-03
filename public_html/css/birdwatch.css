@@ -4,7 +4,11 @@
 */
 
 * {
-    font-family: sans-serif;
+    font-family: 'PT Serif', serif;
+}
+
+*:not(.title) {
+    font-size: 2vmin;
 }
 
 body {
@@ -18,7 +22,7 @@ p {
 }
 
 li {
-    cursor: pointer;
+
 }
 
 .left, .middle, .right {
@@ -60,26 +64,29 @@ li {
     border-color: #baad86;
 }
 
-.mainclick>img, .shopitem1, .entryclose {
+.mainclick>img, .shopitem, .entryclose {
     cursor: pointer;
     user-select: none;
     overflow: scroll;
 }
 
 .mainclick {
-    margin-top: 50px; 
+    margin-top: 10%;
+    margin-bottom: 10%;
+    height: 30%;
 }
 
 .mainclick>img {
-    width: 50%;
+    height: 100%;
 }
 
-.shopitem1 {
+.shopitem {
     background-color: #fef2cf;
     height: 15%;
+    margin-bottom: 5px;
 }
 
-.shopitem1info {
+.shopiteminfo {
     display: inline-block;
     height: 100%;
     width: 70%;
@@ -87,20 +94,20 @@ li {
     overflow: scroll;
 }
 
-.shopitem1image {
+.shopitemimage {
     display: inline-block;
     height: 100%;
     width: 30%;
     float: left;
 }
 
-.shopitem1image>img {
+.shopitemimage>img {
     height: 100%;
 }
 
 .title {
-    font-size: 25px;
-    height: 35px;
+    font-size: 3vmin;
+    height: calc(3vmin+2px);
     background-color: #cec19a;
 }
 
@@ -109,13 +116,13 @@ li {
 }
 
 .shopcontents {
-    height: calc(100% - 35px);
+    height: calc(100% - 20px);
     background-color: #dbcea8;
     overflow-y: scroll;
 }
 
 .gametitle {
-    font-size: 30px;
+    font-size: 3vmin;
 }
 
 .fieldjournalentries {
@@ -135,12 +142,13 @@ li {
 .entryclose {
     display: none;
     float: left;
-    font-size: 30px;
+    font-size: 3vmin;
     margin-left: 5px;
     opacity: .5;
 }
 
 .entryimage {
+    display: none;
     margin-top: calc(2% + 30px);
     height: 50%;
 }
@@ -151,15 +159,19 @@ li {
 
 .entryinfo {
     margin-top: 5%;
-    height: 80%;
+    height: calc(100% - (57% + 30px));
 }
 
 .itemtitle {
-    font-size: 20px;
+    margin-top: 5px;
+    font-weight: bold;
 }
 
-.shopitem1desc, .shopitem1quantity {
-    margin-top: 5%;
+.shopitemdesc, .shopitemquantity {
+}
+
+.shopitemflavortext {
+    font-style: italic;
 }
 
 .hidden {
