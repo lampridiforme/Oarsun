@@ -80,3 +80,14 @@ hr {
     text-align: left;
     /*background-color: red;*/
 }
+
+@media screen and (max-width: 700px) {
+    .aboutimg {
+        display: none;
+    }
+    
+    .aboutdesc {
+        text-align: center;
+        width: 100%;
+    }
+}
