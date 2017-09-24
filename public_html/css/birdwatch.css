@@ -80,7 +80,6 @@ li:before {
 .mainclick>img, .entryclose {
     cursor: pointer;
     user-select: none;
-    overflow: scroll;
 }
 
 .mainclick {
@@ -147,15 +146,15 @@ li:before {
 .fieldjournalentries {
     text-align: left;
     overflow-y: scroll;
-    height: 20%;
+    height: calc(20%);
 }
 
 .fieldjournalpage {
-    height: calc(80% - 45px);
+    height: calc(80% - 40px);
     border-top: solid;
     border-width: 5px;
     border-color: #b9a070;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .entryclose {

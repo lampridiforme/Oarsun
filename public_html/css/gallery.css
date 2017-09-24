@@ -76,11 +76,11 @@ hr {
     border-radius: 20px;
     width: auto;
     height: 150px;
+    cursor: pointer;
 }
 
 .gallerycontent>img:hover {
     border-radius: 20px;
-    cursor: pointer;
 }
 
 /* coded with help from W3Schools */
@@ -102,7 +102,7 @@ hr {
     margin-right: auto;
     margin-left: auto;
     display: block;
-    width: 100%;
+    max-width: 80%;
     height: auto;
 }
 

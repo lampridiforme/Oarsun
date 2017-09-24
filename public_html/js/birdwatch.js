@@ -63,8 +63,12 @@ var statueid = 5;
 // mansions
 var mansioncost = 999800;
 var mansionrate = 350;
-var mansionrate = 0;
+var mansionquantity = 0;
 var mansionid = 6;
+
+function Attractor() {
+    
+}
 
 function displayTotal() {
     $(".totalcount").text(Math.floor(runningTotal) + " birds attracted (" 
@@ -72,21 +76,13 @@ function displayTotal() {
 }
 
 function displayRate() {
-    if(autoUpcount == 1) {
+    if(autoUpcount === 1) {
         $(".rate").text("Attracting " + autoUpcount + " bird per second");
     }
     else {
         $(".rate").text("Attracting " + Math.round(autoUpcount*10)/10 
             + " birds per second");   
     }
-}
-
-function displayNewCost() {
-    
-}
-
-function displayQuantity(type) {
-    
 }
 
 function displayNewCostItem1() {
