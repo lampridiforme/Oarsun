@@ -145,7 +145,7 @@ td {
     border-width: 1px;
     width: 48%;
     height: 48%;
-    display: inline-block;
+    display: none;
     min-width: 470px;
 }
 
@@ -233,4 +233,8 @@ td {
 
 .actionbutton:hover, .direction:hover {
     cursor: pointer;
+}
+
+td {
+    background-color: #303030;
 }
