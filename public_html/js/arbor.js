@@ -4,88 +4,103 @@
  * and open the template in the editor.
  */
 
+// initial variable values for clean level/game restarts
+
 // health and energy
-const MAXHEALTH = 100;
-const MAXENERGY = 100;
+var MAXHEALTH = 100;
+var MAXENERGY = 100;
 
 // health and energy loss
-const STARVESLOW = 2;
-const STARVEMED = 5;
-const STARVEFAST = 7;
-const HEALSLOW = 1;
-const HEALMED = 3;
-const HEALFAST = 5;
+var STARVESLOW = 2;
+var STARVEMED = 4;
+var STARVEFAST = 7;
+var HEALSLOW = 1;
+var HEALMED = 2;
+var HEALFAST = 5;
+
+// game over types
+var NOT_DIE = -1;
+var ATTACKED = 0;
+var DROWNED = 1;
+var STARVED = 2;
+var POUNCE = 3;
+
+// game over strings
+var GAME_OVER = "GAME OVER.";
+var ATTACKED_DESC = "Your injuries are too great and you succumb to them.";
+var DROWNED_DESC = "You attempt to wade through the river, but the currents are too swift for you. You drown in the waves.";
+var STARVED_DESC = "You have starved to death.";
 
 // biomes
-const UNIDENTIFIED = -1;
-const FORESTEASY = 0;
-const FORESTMED = 1;
-const FORESTHARD = 2;
-const PLAINSEASY = 3;
-const PLAINSHARD = 4;
-const RIVER = 5;
-const SWAMPEASY = 6;
-const SWAMPHARD = 7;
-const WASTES = 8;
-const HOME = 9;
-const EGGNEST = 10;
-const OTHERNEST = 11;
+var UNIDENTIFIED = -1;
+var FORESTEASY = 0;
+var FORESTMED = 1;
+var FORESTHARD = 2;
+var PLAINSEASY = 3;
+var PLAINSHARD = 4;
+var RIVER = 5;
+var SWAMPEASY = 6;
+var SWAMPHARD = 7;
+var WASTES = 8;
+var HOME = 9;
+var EGGNEST = 10;
+var OTHERNEST = 11;
 
 // biome colors
-const UNIDENTIFIED_COLOR = "#ff0026";
-const UNVISITED_COLOR = "#bababa";
-const FORESTEASY_COLOR = "#38ff4b";
-const FORESTMED_COLOR = "#299734";
-const FORESTHARD_COLOR = "#013800";
-const PLAINSEASY_COLOR = "#e2f90e";
-const PLAINSHARD_COLOR = "#d8890a";
-const RIVER_COLOR = "#00b2ff";
-const SWAMPEASY_COLOR = "#cc4cff";
-const SWAMPHARD_COLOR = "#510ca0";
-const WASTES_COLOR = "#aef9f4";
-const HOME_COLOR = "#62c43e";
-const EGGNEST_COLOR = "#62c43e";
-const OTHERNEST_COLOR = "#62c43e";
+var UNIDENTIFIED_COLOR = "#ff0026";
+var UNVISITED_COLOR = "#bababa";
+var FORESTEASY_COLOR = "#38ff4b";
+var FORESTMED_COLOR = "#299734";
+var FORESTHARD_COLOR = "#013800";
+var PLAINSEASY_COLOR = "#e2f90e";
+var PLAINSHARD_COLOR = "#d8890a";
+var RIVER_COLOR = "#00b2ff";
+var SWAMPEASY_COLOR = "#cc4cff";
+var SWAMPHARD_COLOR = "#510ca0";
+var WASTES_COLOR = "#aef9f4";
+var HOME_COLOR = "#62c43e";
+var EGGNEST_COLOR = "#62c43e";
+var OTHERNEST_COLOR = "#62c43e";
 
 // biome descriptions
-const FORESTEASY_DESC = "You are in the western forests. The flora gets denser and thicker to the south and west, and thins out considerably to the north.";
-const FORESTMED_DESC = "You are in the northern forests. The plants are thinner here than those in the southern forests. You see an open plain to the southeast and a deep gorge to the north and west. ";
-const FORESTHARD_DESC = "You are in the eastern forests. The plants are thickest here and form an impenetrable wall to the east and south.";
-const PLAINSEASY_DESC= "You are in the southern plains. Thin grass stretches to the north and east.";
-const PLAINSHARD_DESC = "You are in the northern plains. White dunes are visible in the northeast.";
-const RIVER_DESC = "You wade through the river.";
-const SWAMPEASY_DESC = "You are in a swamp.";
-const SWAMPHARD_DESC = "You are in a swamp. It's harder to traverse compared to the southern and western swamps.";
-const WASTES_DESC = "You are in the wastes. A desert of fine, white sand stretches indefinitely to the north and east. To the south and west you see the sunbaked flats of the eastern plains.";
-const HOME_DESC = "You are currently standing in a nest. Is anyone home?";
-const EGGNEST_DESC = "You are currently standing in a nest. Is anyone home?";
-const OTHERNEST_DESC = "You are currently standing in a nest. Is anyone home?";
+var FORESTEASY_DESC = "You are in the western forests. The flora gets denser and thicker to the south and west, and thins out considerably to the north.";
+var FORESTMED_DESC = "You are in the northern forests. The plants are thinner here than those in the southern forests. You see an open plain to the southeast and a deep gorge to the north and west. ";
+var FORESTHARD_DESC = "You are in the eastern forests. The plants are thickest here and form an impenetrable wall to the east and south.";
+var PLAINSEASY_DESC= "You are in the southern plains. Thin grass stretches to the north and east.";
+var PLAINSHARD_DESC = "You are in the northern plains. White dunes are visible in the northeast.";
+var RIVER_DESC = "You wade through the river.";
+var SWAMPEASY_DESC = "You are in a swamp.";
+var SWAMPHARD_DESC = "You are in a swamp. It's harder to traverse compared to the southern and western swamps.";
+var WASTES_DESC = "You are in the wastes. A desert of fine, white sand stretches indefinitely to the north and east. To the south and west you see the sunbaked flats of the eastern plains.";
+var HOME_DESC = "You are currently standing in a nest. Is anyone home?";
+var EGGNEST_DESC = "You are currently standing in a nest. Is anyone home?";
+var OTHERNEST_DESC = "You are currently standing in a nest. Is anyone home?";
 
 // directions
-const NORTH = "north";
-const NORTHWEST = "northwest";
-const WEST = "west";
-const SOUTHWEST = "southwest";
-const SOUTH = "south";
-const SOUTHEAST = "southeast";
-const EAST = "east";
-const NORTHEAST = "northeast";
-const WAIT = "wait";
+var NORTH = "north";
+var NORTHWEST = "northwest";
+var WEST = "west";
+var SOUTHWEST = "southwest";
+var SOUTH = "south";
+var SOUTHEAST = "southeast";
+var EAST = "east";
+var NORTHEAST = "northeast";
+var WAIT = "wait";
 
 // level caps
-const FIRSTLEVEL = 100;
-const SECONDLEVEL = 500;
-const THIRDLEVEL = 1500;
-const LEVELCAPLOW = 2200;
-const LEVELCAPMED = 2500;
-const LEVELCAPHIGH = 3000;
+var FIRSTLEVEL = 100;
+var SECONDLEVEL = 500;
+var THIRDLEVEL = 1500;
+var LEVELCAPLOW = 2200;
+var LEVELCAPMED = 2500;
+var LEVELCAPHIGH = 3000;
 
 // for displaying color bars
-const LOWPERCENT = 40;
-const HIGHPERCENT = 90;
+var LOWPERCENT = 40;
+var HIGHPERCENT = 90;
 
 // world map
-const MAP = [
+var MAP = [
     [FORESTMED, FORESTMED, RIVER, SWAMPHARD, SWAMPHARD, PLAINSHARD, PLAINSHARD, PLAINSHARD, PLAINSHARD, WASTES, WASTES, WASTES, WASTES, WASTES],
     [FORESTMED, FORESTMED, RIVER, SWAMPHARD, SWAMPHARD, PLAINSHARD, PLAINSHARD, PLAINSHARD, PLAINSHARD, WASTES, WASTES, WASTES, WASTES, WASTES],
     [FORESTMED, FORESTMED, RIVER, SWAMPHARD, SWAMPHARD, SWAMPHARD, PLAINSHARD, PLAINSHARD, PLAINSHARD, PLAINSHARD, PLAINSHARD, WASTES, WASTES, WASTES],
@@ -103,57 +118,103 @@ const MAP = [
 ];
 
 // enemy descriptions
-// NOTE: these are vars because apparently consts aren't globally scoped???
+// NOTE: these are vars because apparently vars aren't globally scoped???
+// TODO: when I get to refactoring turn these into enemy parameters
+// insect desc
 var MILLIPEDE_DESC = "a millipede crawling in the dirt";
 var BEETLE_DESC = "a beetle";
 var DRAGONFLY_DESC = "a perched dragonfly";
 var SCORPION_DESC = "a scorpion hiding under a rock";
+var BOB_DESC = "a snail named Bob";
+var MEGABOB_DESC = "a very large snail named Bob";
+
+// reptile desc
+var LIZARD_DESC = "a lizard warming itself in the sun";
+var IGUANA_DESC = "an iguana on a branch";
+var ALLIGATOR_DESC = "a gaping alligator";
+
+// amphibian desc
+var MUDFISH_DESC = "a floundering mudfish";
+var FROG_DESC = "a frog";
 
 // enemies
 // format: new Enemy({"name":"", "danger":});
 // insects
-const MILLIPEDE = new Enemy({"name":"Millipede", "danger":.5, "agilityModifier":.6});
-const BEETLE = new Enemy({"name":"Beetle", "danger":.2, "agilityModifier":.9});
-const DRAGONFLY = new Enemy({"name":"Dragonfly", "danger":1, "agilityModifier":1.8});
-const SCORPION = new Enemy({"name":"Scorpion", "danger":20, "energyModifier":.2});
+var MILLIPEDE = new Enemy({"name":"Millipede", "danger":.2, "agilityModifier":.4, "energyModifier":5, "predator":false});
+var BEETLE = new Enemy({"name":"Beetle", "danger":.1, "agilityModifier":.8, "energyModifier":2, "predator":false});
+var DRAGONFLY = new Enemy({"name":"Dragonfly", "danger":.2, "agilityModifier":1.5, "energyModifier":4, "predator":false});
+var SCORPION = new Enemy({"name":"Scorpion", "danger":10, "energyModifier":.5, "predator":true});
+var BOB = new Enemy({"name":"Bob", "danger":.1, "agilityModifier":.01, "energyModifier":50, "predator":false});
+var MEGABOB = new Enemy({"name":"Megabob", "danger":100, "energyModifier":10, "predator":false});
 
-// lizards
-const LIZARD = new Enemy({"name":"Lizard", "danger":10});
-const IGUANA = new Enemy({"name":"Iguana", "danger":20, "energyModifier":1.1});
+// reptiles
+var LIZARD = new Enemy({"name":"Lizard", "danger":4, "predator":true});
+var IGUANA = new Enemy({"name":"Iguana", "danger":8, "energyModifier":1.1, "predator":false});
+var ALLIGATOR = new Enemy({"name":"Alligator", "danger":700, "predator":true});
+
+// amphibians
+var MUDFISH = new Enemy({"name":"Mudfish", "danger":50, "agilityModifier":.5, "predator":false});
+var FROG = new Enemy({"name":"Frog", "danger":25, "agilityModifier":1.1, "predator":false});
 
 // arborsaurs
-const MOMMA = new Enemy({"name":"Adult Female Arborsaur", "danger":2200});
-const J_ARBORSAUR_WEAK = new Enemy({"name":"Juvenile Arborsaur", "danger":100});
-const J_ARBORSAUR_MED = new Enemy({"name":"Juvenile Arborsaur", "danger":200});
-const J_ARBORSAUR_STRONG = new Enemy({"name":"Juvenile Arborsaur", "danger":350});
-const F_ARBORSAUR_WEAK = new Enemy({"name":"Adult Female Arborsaur", "danger":2000});
-const F_ARBORSAUR_MED = new Enemy({"name":"Adult Female Arborsaur", "danger":2200});
-const F_ARBORSAUR_STRONG = new Enemy({"name":"Adult Female Arborsaur", "danger":2700});
-const M_ARBORSAUR_WEAK = new Enemy({"name":"Adult Male Arborsaur", "danger":2300});
-const M_ARBORSAUR_MED = new Enemy({"name":"Adult Male Arborsaur", "danger":2500});
-const M_ARBORSAUR_STRONG = new Enemy({"name":"Adult Male Arborsaur", "danger":3000});
+var MOMMA = new Enemy({"name":"Adult Female Arborsaur", "danger":2200, "predator":false});
+var J_ARBORSAUR_WEAK = new Enemy({"name":"Juvenile Arborsaur", "danger":100, "predator":true});
+var J_ARBORSAUR_MED = new Enemy({"name":"Juvenile Arborsaur", "danger":200, "predator":true});
+var J_ARBORSAUR_STRONG = new Enemy({"name":"Juvenile Arborsaur", "danger":350, "predator":true});
+var F_ARBORSAUR_WEAK = new Enemy({"name":"Adult Female Arborsaur", "danger":2000, "predator":true});
+var F_ARBORSAUR_MED = new Enemy({"name":"Adult Female Arborsaur", "danger":2200, "predator":true});
+var F_ARBORSAUR_STRONG = new Enemy({"name":"Adult Female Arborsaur", "danger":2700, "predator":true});
+var M_ARBORSAUR_WEAK = new Enemy({"name":"Adult Male Arborsaur", "danger":2300, "predator":true});
+var M_ARBORSAUR_MED = new Enemy({"name":"Adult Male Arborsaur", "danger":2500, "predator":true});
+var M_ARBORSAUR_STRONG = new Enemy({"name":"Adult Male Arborsaur", "danger":3000, "predator":true});
 
 // lungs
-const J_LUNG = new Enemy({"name":"Juvenile Lung", "danger":120});
-const LUNG_WEAK = new Enemy({"name":"Adult Lung", "danger":450});
-const LUNG_MED = new Enemy({"name":"Adult Lung", "danger":500});
-const LUNG_STRONG = new Enemy({"name":"Adult Lung", "danger":670});
+var J_LUNG = new Enemy({"name":"Juvenile Lung", "danger":120, "predator":true});
+var LUNG_WEAK = new Enemy({"name":"Adult Lung", "danger":450, "predator":true});
+var LUNG_MED = new Enemy({"name":"Adult Lung", "danger":500, "predator":true});
+var LUNG_STRONG = new Enemy({"name":"Adult Lung", "danger":670, "predator":true});
+
+// wyverns
+var DAPHYLDRAKE = new Enemy({"name":"Daphyldrake", "danger":60, "agilityModifier":1.5, "predator":true});
+var WYVERN = new Enemy({"name":"Wyvern", "danger":1700, "agilityModifier":1.1, "predator":true});
+
+// birds
+var JOHNNIE = new Enemy({"name":"Johnnie", "danger":16, "energyModifier":1.3, "predator":false});
+var STEEVIE = new Enemy({"name":"Steevie", "danger":800, "agilityModifier":1.2, "energyModifier":1.1, "predator":false});
+var SNIPEY = new Enemy({"name":"Snipey", "danger":80, "agilityModifier":1.1, "predator":false});
+
+// large herbivores
+var AVALON = new Enemy({"name":"Avalon", "danger":550, "predator":false});
+var BEHEMOTH = new Enemy({"name":"Behemoth", "danger":1920, "predator":false});
+var TUSKER = new Enemy({"name":"Tusker", "danger":2790, "predator":true});
+var ATLAS = new Enemy({"name":"Atlas", "danger":6000, "predator":false});   // good luck killing this thing
+var DIPLO = new Enemy({"name":"Diplo", "danger":100000, "predator":false});    // hah
+
+// large carnivores
+var DREAD = new Enemy({"name":"Dread", "danger":450, "agilityModifier":1.1, "predator":true});
+var DREWSARK = new Enemy({"name":"Drewsark", "danger":800, "energyModifier":.8, "predator":true});
+var YIPYIP = new Enemy({"name":"Yipyip", "danger":1067, "predator":true});
 
 // biome enemy generation
-const FORESTEASY_GENERATOR = [{"enemy":BEETLE, "probability":50}, {"enemy":DRAGONFLY, "probability":50}, {"enemy":MILLIPEDE, "probability":50}, {"enemy":SCORPION, "probability":300}];
-const FORESTMED_GENERATOR = [{"enemy":BEETLE, "probability":50}];
-const FORESTHARD_GENERATOR = [{"enemy":BEETLE, "probability":50}];
-const PLAINSEASY_GENERATOR = [{"enemy":BEETLE, "probability":50}];
-const PLAINSHARD_GENERATOR = [{"enemy":BEETLE, "probability":50}];
-const RIVER_GENERATOR = [];
-const SWAMPEASY_GENERATOR = [{"enemy":BEETLE, "probability":50}];
-const SWAMPHARD_GENERATOR = [{"enemy":BEETLE, "probability":50}];
-const WASTES_GENERATOR = [{"enemy":BEETLE, "probability":50}];
-const HOME_GENERATOR = [{"enemy":BEETLE, "probability":50}];
-const EGGNEST_GENERATOR = [{"enemy":BEETLE, "probability":50}];
-const OTHERNEST_GENERATOR = [{"enemy":BEETLE, "probability":50}];
+var FORESTEASY_GENERATOR = [{"enemy":BEETLE, "probability":35}, {"enemy":DRAGONFLY, "probability":20}, 
+    {"enemy":MILLIPEDE, "probability":40}, {"enemy":LIZARD, "probability":15}, {"enemy":JOHNNIE, "probability":10}, 
+    {"enemy":J_LUNG, "probability":5}, {"enemy":LUNG_WEAK, "probability":2}, {"enemy":LUNG_MED, "probability":1}, 
+    {"enemy":J_ARBORSAUR_WEAK, "probability":2}, {"enemy":J_ARBORSAUR_MED, "probability":1}, {"enemy":F_ARBORSAUR_MED, "probability":1}];
+var FORESTMED_GENERATOR = [{"enemy":BEETLE, "probability":50}];
+var FORESTHARD_GENERATOR = [{"enemy":BEETLE, "probability":50}];
+var PLAINSEASY_GENERATOR = [{"enemy":BEETLE, "probability":50}];
+var PLAINSHARD_GENERATOR = [{"enemy":BEETLE, "probability":50}];
+var RIVER_GENERATOR = [];
+var SWAMPEASY_GENERATOR = [{"enemy":BEETLE, "probability":50}];
+var SWAMPHARD_GENERATOR = [{"enemy":BEETLE, "probability":50}];
+var WASTES_GENERATOR = [{"enemy":BEETLE, "probability":50}];
+var HOME_GENERATOR = [{"enemy":BEETLE, "probability":50}];
+var EGGNEST_GENERATOR = [{"enemy":BEETLE, "probability":50}];
+var OTHERNEST_GENERATOR = [{"enemy":BEETLE, "probability":50}];
 
-const pb = new ParagraphBuffer();
+var pb = new ParagraphBuffer();
+
+var enableUI = true;
 
 // egg nest egg count. Start at 3.
 var eggsSouthCount = 3;
@@ -177,7 +238,7 @@ var starveRate = STARVEMED;
 var healRate = HEALMED;
 
 // weight
-var currentWeight = 3;
+var currentWeight = 1.5;
 // energy
 var currentEnergy = 100;
 // health
@@ -185,6 +246,9 @@ var currentHealth = 100;
 
 // player's current location
 var currentLocation = new PlayerLocation();
+
+// times the player has stayed in the same location
+var idleTime = 0;
 
 // current enemies
 var enemy1;
@@ -218,20 +282,18 @@ function Enemy(info) {
     if(info["agilityModifier"]) {
         this.agilityModifier = info["agilityModifier"];
     }
-    else {
-        console.log("Warning: No agility modifier (Enemy)");
-    }
     
     if(info["energyModifier"]) {
         this.energyModifier = info["energyModifier"];
     }
-    else {
-        console.log("Warning: No energy modifier (Enemy)");
+    
+    if(info["predator"]) {
+        this.aggressive = info["predator"];
     }
 }
 
 /*
- * Location constructor
+ * Location varructor
  * 
  * @returns {PlayerLocation}
  */
@@ -257,6 +319,14 @@ function validatePosition(index, row) {
     }
     console.log("Valid position");
     return true;    //valid!
+}
+
+
+function drown(location) {
+    if(currentLevel < 3 && location.biome === RIVER) {
+        return true;
+    }
+    return false;
 }
 
 /*
@@ -331,16 +401,26 @@ function move(direction) {
        // biome
        currentLocation.biome = MAP[newLocation.row][newLocation.index];
        
-       // starve on valid move
-       starve();
+       // did player idle
+       if(currentLocation.index === newLocation.index && currentLocation.row === newLocation.row) {
+           idleTime++;
+       }
        
+       // generate enemies
+       generateEnemies(currentLocation.row, currentLocation.index);
+       
+       // starve and heal on valid move
+       if(direction === WAIT) {
+           starve(true);
+       }
+       else {
+          starve(false); 
+       }
+       
+       heal();
    }
       
    return currentLocation;
-}
-
-function generateEnemies(index, row) {
-    
 }
 
 /*
@@ -366,16 +446,9 @@ function attack(enemy) {
     // incur damage on player during attack
     currentHealth = currentHealth - damage;
     
-    // dead?
-    if(currentHealth <= 0) {
-        gameOver(false);
-        // TODO: push damage message
-        return;
-    }
-    
     // gain energy and grow
     currentEnergy = currentEnergy + energy;
-    currentWeight = currentWeight + energy/3;
+    currentWeight = currentWeight + energy/50;
     
     if(currentEnergy > 100) {
         currentEnergy = 100;
@@ -384,9 +457,7 @@ function attack(enemy) {
     writeAttack(enemy, damage);
     
     console.log("Attacked " + enemy.name + ". Health: " + currentHealth + " Energy: " + currentEnergy + "Size: " + currentWeight + " (attack)");
-    
-    
-    
+
 }
 
 /*
@@ -406,15 +477,16 @@ function mate() {
  * 
  * @returns {Boolean}
  */
-function starve() {
-    currentEnergy = currentEnergy - metabolismEnergy;
+function starve(waited) {
+    if(waited === false) {
+        currentEnergy = currentEnergy - metabolismEnergy;
+    }
+    if(waited === true) {
+        currentEnergy = currentEnergy - metabolismEnergy/2;
+    }
     
     console.log("You starve a little. Current energy at: " + currentEnergy + " (starve)");
     
-    if(currentEnergy <= 0) {
-        gameOver(false);
-        return true;
-    }
     return false;
 }
 
@@ -426,6 +498,9 @@ function starve() {
 function heal() {
     if(currentHealth < MAXHEALTH) {
         currentHealth = currentHealth + metabolismHealth;
+    }
+    if(currentHealth > 100) {
+        currentHealth = 100;
     }
 }
 
@@ -496,7 +571,7 @@ function calculateEnemyDamage(enemy) {
     var damage = enemy.danger/currentWeight * 100;
     
     // player can attack safely if enemy is significantly smaller
-    if(enemy.danger < currentWeight/10) {
+    if(enemy.danger < currentWeight/2) {
         return 0;
     }
     
@@ -509,13 +584,101 @@ function calculateEnemyDamage(enemy) {
  * Will the enemy pounce?
  * Only happens after "wait" command and if the enemy is larger than the player.
  * 
+ * Keep an enemy in the display if it is much stronger than the player. Each 
+ * idle action the user makes runs a random function testing to see if the 
+ * enemy will pounce.
+ * 
  * @param {type} enemy
  * @returns {Boolean}
  */
-function enemyPounce(enemy) {
-    var aggression = (1 - currentWeight/enemy.danger) * 100;
+function isEnemyPounce(enemy) {
+    var aggression = calculateEnemyDamage(enemy);
     
-    if(enemy.danger > currentWeight && getRandomNum(0, 100) < aggression) { // TODO: any problems when in same location after eating?
+    if(aggression > 200) {
+        aggression = 100;
+    }
+    else if(aggression <= 0) {
+        return false;
+    }
+    
+    // will the enemy pounce?
+    if(getRandomNum(0,100)-idleTime*2 < aggression/2 && enemy.aggressive === true) {
+        console.log("Enemy " + enemy.name + " pounced.");
+        // was it successful?
+        if(getRandomNum(0, 100) < 100*(currentWeight/enemy.danger)) {
+            // TODO: player fled string
+            console.log("Enemy has attacked.");
+            return true;
+        }
+        console.log("Enemy attempted to pounce but missed.");
+    }
+    
+    // did not pounce
+    return false;
+}
+
+/**
+ * 
+ * @param {type} enemy
+ * @returns {undefined}
+ */
+function pounce(enemy) {
+    var enemyPounced = isEnemyPounce(enemy);
+    
+    if(enemyPounced) {
+        console.log("Perform pounce attack calculations.");
+        
+        // TODO: pounce string
+        var energy = calculateEnemyEnergy(enemy);
+        var damage = calculateEnemyDamage(enemy);
+
+        // incur damage on player during attack
+        currentHealth = currentHealth - damage;
+
+        if(currentEnergy > 100) {
+            currentEnergy = 100;
+        }
+        
+        return true;
+        // TODO: unique attack phrase
+    }
+    return false;
+}
+
+function pounceAll() {
+    var pounced = false;
+    
+    if(idleTime <= 0) {
+        return;
+    }
+    
+    var enemyList = Array();
+    
+    if(enemy1) {
+        enemyList.push(enemy1);
+    }
+    if(enemy2) {
+        enemyList.push(enemy2);
+    }
+    if(enemy3) {
+        enemyList.push(enemy3);
+    }
+    if(enemy4) {
+        enemyList.push(enemy4);
+    }
+    
+    for(var i = 0; i < enemyList.length; i++) {
+        if(enemyList[i]) {
+            pounced = pounce(enemyList[i]);
+            if(pounced) {
+                writePounceResult(enemyList[i], pounced);
+                break;
+            }
+        }
+    }
+    
+    if(currentHealth <= 0) {
+        gameOver(POUNCE);
         return true;
     }
     
@@ -624,17 +787,17 @@ function generateEnemies(row, index) {  // TODO: maybe turn this into switch ins
     var enemiesToDisplay = Array();
     
     if(MAP[row][index] === FORESTEASY) {
-        enemiesToDisplay = generateEnemiesHelper(40, FORESTEASY_GENERATOR);
+        enemiesToDisplay = generateEnemiesHelper(75, FORESTEASY_GENERATOR);
     }
     else if(MAP[row][index] === FORESTMED) {
-        enemiesToDisplay = generateEnemiesHelper(50, FORESTMED_GENERATOR);
+        enemiesToDisplay = generateEnemiesHelper(80, FORESTMED_GENERATOR);
         displayEnemies(enemiesToDisplay);
     }
     else if(MAP[row][index] === FORESTHARD) {
-        enemiesToDisplay = generateEnemiesHelper(50, FORESTHARD_GENERATOR);
+        enemiesToDisplay = generateEnemiesHelper(90, FORESTHARD_GENERATOR);
     }
     else if(MAP[row][index] === PLAINSEASY) {
-        enemiesToDisplay = generateEnemiesHelper(60, PLAINSEASY_GENERATOR);
+        enemiesToDisplay = generateEnemiesHelper(75, PLAINSEASY_GENERATOR);
     }
     else if(MAP[row][index] === PLAINSHARD) {
         enemiesToDisplay = generateEnemiesHelper(90, PLAINSHARD_GENERATOR);
@@ -644,19 +807,19 @@ function generateEnemies(row, index) {  // TODO: maybe turn this into switch ins
         enemiesToDisplay = generateEnemiesHelper(100, RIVER_GENERATOR);
     }
     else if(MAP[row][index] === SWAMPEASY) {
-        enemiesToDisplay = generateEnemiesHelper(20, SWAMPEASY_GENERATOR);
+        enemiesToDisplay = generateEnemiesHelper(70, SWAMPEASY_GENERATOR);
     }
     else if(MAP[row][index] === SWAMPHARD) {
-        enemiesToDisplay = generateEnemiesHelper(40, SWAMPHARD_GENERATOR);
+        enemiesToDisplay = generateEnemiesHelper(90, SWAMPHARD_GENERATOR);
     }
     else if(MAP[row][index] === WASTES) {
-        enemiesToDisplay = generateEnemiesHelper(80, WASTES_GENERATOR);
+        enemiesToDisplay = generateEnemiesHelper(95, WASTES_GENERATOR);
     }
     else if(MAP[row][index] === HOME) {
-        enemiesToDisplay = generateEnemiesHelper(70, HOME_GENERATOR);
+        enemiesToDisplay = generateEnemiesHelper(80, HOME_GENERATOR);
     }
     else if(MAP[row][index] === EGGNEST) {
-        enemiesToDisplay = generateEnemiesHelper(70, EGGNEST_GENERATOR);
+        enemiesToDisplay = generateEnemiesHelper(80, EGGNEST_GENERATOR);
     }
     else if(MAP[row][index] === OTHERNEST) {
         enemiesToDisplay = generateEnemiesHelper(90, OTHERNEST_GENERATOR);
@@ -681,22 +844,73 @@ function generateEnemies(row, index) {  // TODO: maybe turn this into switch ins
 }
 
 /*
- * TODO
+ * 
+ * @param {type} enemy
+ * @returns {Boolean}
+ */
+function isMateable(enemy) {
+    if(enemy.name === "Adult Female Arborsaur" && enemy !== MOMMA) {
+        return true;
+    }
+    return false;
+}
+
+function checkGameOver(energy, health) {
+    if(energy <= 0) {
+        gameOver(STARVED);
+        return STARVED;
+    }
+    
+    if(health <= 0) {
+        gameOver(ATTACKED);
+        return ATTACKED;
+    }
+    
+    if(drown(currentLocation)) {
+        gameOver(DROWNED);
+        return DROWNED;
+    }
+    
+    // did not game over
+    return NOT_DIE;
+}
+
+/*
+ * TODO: put checks inside this function so I can call it from the JQ functions
  * End game if player won or lose.
  * 
  * @param {type} wonGame
  * @returns {undefined}
  */
-function gameOver(wonGame) {
-    if(wonGame === true) {
-        alert("You win!");
-    }
-    else {
-        alert("You lose!");
+function gameOver(deathType) {    
+    // lock UI
+    lockUI();
+    
+    displayHealth(0);
+    displayEnergy(0);
+    
+    // clear enemies
+    var emptyArray = Array();
+    displayEnemies(emptyArray);
+    
+    if(deathType !== POUNCE) {
+        writeGameOver(deathType);
     }
 }
 
 /***** UI Stuff *****/
+
+/*
+ * For game over scenarios.
+ * 
+ * @returns {undefined}
+ */
+function lockUI() {
+    enableUI = false;
+    $(".direction").hover(function() {
+        $(this).css("color", "black");
+    });
+}
 
 function moveMapMarker(newRow, newIndex) {
     console.log("Moving display to here: " + newIndex + ", " + newRow + " (moveMapMarker)");
@@ -762,6 +976,15 @@ function changeLocationColor(row, index) {
     $("#minimaptable td").eq(coords).css("background-color", newColor);
 }
 
+function displayEnemyMateButton(location, enemy) {
+    if(isMateable(enemy)) {
+        $(location + ">.mate").css("display", "inline-block");
+    }
+    else {
+        $(location + ">.mate").css("display", "none");
+    }
+}
+
 /*
  * Set an enemy's info (name, bars) in the gui.
  * 
@@ -777,14 +1000,15 @@ function displayEnemyBars(location, enemy) {
     console.log("Sizebar percentage: " + dangerPercent + " (displayEnemyBars)");
     
     // sizebar color
-    if(dangerPercent <= LOWPERCENT) {
-        $(location + ">.stats>.enemysize>.sizebar").css("background-color", "lime");
+
+    if(currentHealth - dangerPercent <= 0) {
+        $(location + ">.stats>.enemysize>.sizebar").css("background-color", "red");
     }
-    else if(dangerPercent < LOWPERCENT && dangerPercent >= HIGHPERCENT) {
+    else if(dangerPercent > 10) {
         $(location + ">.stats>.enemysize>.sizebar").css("background-color", "yellow");
     }
     else {
-        $(location + ">.stats>.enemysize>.sizebar").css("background-color", "red");
+        $(location + ">.stats>.enemysize>.sizebar").css("background-color", "lime");
     }
     
     console.log("Agility percentage: " + agilityPercent + " (displayEnemyBars)");
@@ -813,7 +1037,7 @@ function displayEnemyBars(location, enemy) {
     var energyLocation = location + ">.stats>.enemyenergy>.energybar";
     
     
-    
+    displayEnemyMateButton(location, enemy);
     $(nameLocation).html(enemy.name);
     $(dangerLocation).css("width", dangerPercent);
     $(agilityLocation).css("width", agilityPercent);
@@ -833,8 +1057,10 @@ function displayEnemies(enemies) {
     }
     
     var toDisplay = Array();
+    // needed to match to the global variable
     var enemyCounter = 1;
 
+    // if enemy exists, get enemy information from global variable
     for(var i = 0; i < 4; i++) {
         var enemyVar = "enemy" + (enemyCounter);
         if(enemies[i]) {
@@ -891,23 +1117,65 @@ function displayEnemies(enemies) {
     
 }
 
+function displayWeight(weight) {
+    var string = "Your weight: " + Math.round(weight*10)/10 + " lbs.";
+    $("#weight").html(string);
+}
+
+function displayEnergy(energy) {
+    var string = "Your energy: " + Math.round(energy) + "/100";
+    $("#energy").html(string);
+}
+
+function displayHealth(health) {
+    var string = "Your health: " + Math.round(health) + "/100";
+    
+    $("#health").html(string);
+}
+
+function displayCurrentPlayerInfo() {
+    displayWeight(currentWeight);
+    displayEnergy(currentEnergy);
+    displayHealth(currentHealth);
+}
+
 $(document).ready(function() { 
     
     // display home
     changeLocationColor(currentLocation.row, currentLocation.index);
+    createDescription();
+    pb.flushBuffer();
+    // display info
+    displayCurrentPlayerInfo();
     
     /*
      * Compass click
      */
     $(".direction").click(function() {
-        console.log("Compass click: " + this.id);
-        var newPos = move(this.id);
-        moveMapMarker(currentLocation.row, currentLocation.index);
-        generateEnemies(currentLocation.row, currentLocation.index);
-        
-        // Prints a description to top div
-        createDescription();
-        pb.flushBuffer();
+        if(enableUI === true) {
+            console.log("Compass click: " + this.id);
+            var newPos = move(this.id);
+            moveMapMarker(currentLocation.row, currentLocation.index);
+
+            // Prints a description to top div
+            createDescription();
+            displayCurrentPlayerInfo();
+
+            var pounceDeath = false;
+
+            if(this.id === WAIT) {
+                pounceDeath = pounceAll();
+            }
+            else {
+                idleTime = 0;
+            }
+
+            if(!pounceDeath) {
+                checkGameOver(currentEnergy, currentHealth);
+            }
+            
+            pb.flushBuffer();
+        }
     });
     
     /*
@@ -920,8 +1188,21 @@ $(document).ready(function() {
         attack(window[this.parentNode.parentNode.id]);
         
         // TODO: make it so some enemies remain?
-        writeReloadDescription(window[this.parentNode.parentNode.id], enemies);
+        var lastEnemy = window[this.parentNode.parentNode.id];
         
+        generateEnemies(currentLocation.row, currentLocation.index);
+        writeReloadDescription(lastEnemy);
+
+        displayCurrentPlayerInfo();
+        
+        var pounceDeath = false;
+        pounceDeath = pounceAll();
+        idleTime++;
+        
+        if(!pounceDeath) {
+            checkGameOver(currentEnergy, currentHealth);
+        }
+    
         pb.flushBuffer();
     });
     
@@ -939,20 +1220,9 @@ $(document).ready(function() {
         console.log("Infosheet");
     });
     
-    $(document).keypress(function(e) {
-    if(e.keyCode === 38) {
-        console.log("Keypress: up");
-    }
-    if(e.keyCode === 40) {
-        console.log("Keypress: down");
-    }
-    if(e.keyCode === 37) {
-        console.log("Keypress: left");
-    }
-    if(e.keyCode === 39) {
-        console.log("Keypress: right");
-    }
-});
+    $("#restartgame").click(function() {
+        location.reload();
+    });
     
 });
 
@@ -983,6 +1253,12 @@ function ParagraphBuffer() {
     this.writeBuffer = function writeBuffer(newString) {
         console.log("Wrote to buffer: " + newString + " (ParagraphBuffer.writeBuffer)");
         this.cache.push(newString);
+    };
+    
+    // clears the buffer of all contents
+    this.clear = function clear() {
+        console.log("Buffer cleared. Here's what it said: " + this.cache);
+        this.cache.length = 0;
     };
 }
 
@@ -1069,6 +1345,7 @@ function writeReloadDescription(lastEnemy) {
         console.log("Currently at enemy " + i + ": " + enemyList[i]);
         if(lastEnemy != null && enemyList[i] != null && lastEnemy.name === enemyList[i].name) {
             sameIndex = i;
+            break;
         }
     }
     
@@ -1077,18 +1354,18 @@ function writeReloadDescription(lastEnemy) {
     }
     else if(enemyList.length === 1) {
         if(sameIndex === 0) {
-            description = description + "another " + window[enemyList[0].name.toUpperCase()].name + ".";
+            description = description + "another " + window[enemyList[0].name.toUpperCase()].name.toLowerCase() + ".";
         }
         else {
-            description = description + window[enemyList[0].name.toUpperCase()].name + ".";
+            description = description + window[enemyList[0].name.toUpperCase() + "_DESC"] + ".";
         }   
     }
     else if(enemyList.length === 2) {
         if(sameIndex === 0) {
-            description = description + "another " + window[enemyList[0].name.toUpperCase() + "_DESC"] + " and " + window[enemyList[1].name.toUpperCase() + "_DESC"] + ".";
+            description = description + "another " + window[enemyList[0].name.toUpperCase()].name.toLowerCase() + " and " + window[enemyList[1].name.toUpperCase() + "_DESC"] + ".";
         }
         else if(sameIndex === 1) {
-            description = description + window[enemyList[0].name.toUpperCase() + "_DESC"] + " and another " + window[enemyList[1].name.toUpperCase() + "_DESC"] + ".";    
+            description = description + window[enemyList[0].name.toUpperCase() + "_DESC"] + " and another " + window[enemyList[1].name.toUpperCase()].name.toLowerCase() + ".";    
         }
         else {
             description = description + window[enemyList[0].name.toUpperCase() + "_DESC"] + " and " + window[enemyList[1].name.toUpperCase() + "_DESC"] + "."; 
@@ -1100,7 +1377,8 @@ function writeReloadDescription(lastEnemy) {
             
             // add the "another"
             if(sameIndex === i) {
-                description = description + "another ";
+                description = description + "another " + window[enemyList[i].name.toUpperCase()].name.toLowerCase() + ", ";
+                continue;
             }
             
             description = description + window[enemyList[i].name.toUpperCase() + "_DESC"] + ", ";
@@ -1108,11 +1386,12 @@ function writeReloadDescription(lastEnemy) {
         // ... and ....
         console.log(enemyList[enemyList.length - 1].name.toUpperCase() + "_DESC");
         if(sameIndex === enemyList.length - 1) {
-            description = description + "another ";
+            description = description + "and another " + window[enemyList[enemyList.length - 1].name.toUpperCase()].name.toLowerCase() + ".";
         }
-        description = description + "and " + window[enemyList[enemyList.length - 1].name.toUpperCase() + "_DESC"] + ".";
+        else {
+            description = description + "and " + window[enemyList[enemyList.length - 1].name.toUpperCase() + "_DESC"] + ".";
+        }
     }
-    
     console.log("Write: wrote to buffer: " + description);
     pb.writeBuffer(description);
 }
@@ -1207,6 +1486,47 @@ function writeAttack(enemy, damage) {
     }
     
     pb.writeBuffer(attackMessage);
+}
+
+function writeGameOver(deathType) {
+    var desc = "";
+    
+    if(deathType === STARVED) {
+        desc = STARVED_DESC;
+    }
+    else if(deathType === DROWNED) {
+        desc = DROWNED_DESC;
+    }
+    else if(deathType === ATTACKED) {
+        desc = ATTACKED_DESC;
+    }
+    else if(deathType === POUNCE) {
+        // Needed?
+    }
+    
+    pb.clear();
+    pb.writeBuffer(desc);
+    pb.writeBuffer(" " + GAME_OVER);
+}
+
+function writePounceResult(enemy, pounceSuccess) {
+    var desc = "A " + enemy.name.toLowerCase() + " pounces";
+    
+    if(pounceSuccess) {
+        if(currentHealth <= 0) {
+            console.log("Pounce: player killed. Writing message now.");
+            desc = desc + " and kills you.";
+            pb.clear();
+            pb.writeBuffer(desc);
+            pb.writeBuffer(" " + GAME_OVER);
+        }
+        else {
+            desc = desc + " and manages to injure you, but you manage to escape.";
+        }
+    }
+    else {
+        desc = desc + " but you manage to escape unharmed.";
+    }
 }
 /***** Tests *****/
 
