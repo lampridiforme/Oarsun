@@ -601,6 +601,11 @@ function isEnemyPounce(enemy) {
         return false;
     }
     
+    // do not pounce on first move to a location
+    if(idleTime === 0) {
+        return false;
+    }
+    
     // will the enemy pounce?
     if(getRandomNum(0,100)-idleTime*2 < aggression/2 && enemy.aggressive === true) {
         console.log("Enemy " + enemy.name + " pounced.");
@@ -1153,14 +1158,7 @@ $(document).ready(function() {
      */
     $(".direction").click(function() {
         if(enableUI === true) {
-            console.log("Compass click: " + this.id);
-            var newPos = move(this.id);
-            moveMapMarker(currentLocation.row, currentLocation.index);
-
-            // Prints a description to top div
-            createDescription();
-            displayCurrentPlayerInfo();
-
+            
             var pounceDeath = false;
 
             if(this.id === WAIT) {
@@ -1169,6 +1167,14 @@ $(document).ready(function() {
             else {
                 idleTime = 0;
             }
+            
+            console.log("Compass click: " + this.id);
+            var newPos = move(this.id);
+            moveMapMarker(currentLocation.row, currentLocation.index);
+
+            // Prints a description to top div
+            createDescription();
+            displayCurrentPlayerInfo();
 
             if(!pounceDeath) {
                 checkGameOver(currentEnergy, currentHealth);
@@ -1190,14 +1196,14 @@ $(document).ready(function() {
         // TODO: make it so some enemies remain?
         var lastEnemy = window[this.parentNode.parentNode.id];
         
+        var pounceDeath = false;
+        pounceDeath = pounceAll();
+        idleTime++;
+        
         generateEnemies(currentLocation.row, currentLocation.index);
         writeReloadDescription(lastEnemy);
 
         displayCurrentPlayerInfo();
-        
-        var pounceDeath = false;
-        pounceDeath = pounceAll();
-        idleTime++;
         
         if(!pounceDeath) {
             checkGameOver(currentEnergy, currentHealth);
