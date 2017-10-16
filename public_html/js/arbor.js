@@ -140,9 +140,9 @@ var FROG_DESC = "a frog";
 // enemies
 // format: new Enemy({"name":"", "danger":});
 // insects
-var MILLIPEDE = new Enemy({"name":"Millipede", "danger":.2, "agilityModifier":.4, "energyModifier":5, "predator":false});
-var BEETLE = new Enemy({"name":"Beetle", "danger":.1, "agilityModifier":.8, "energyModifier":2, "predator":false});
-var DRAGONFLY = new Enemy({"name":"Dragonfly", "danger":.2, "agilityModifier":1.5, "energyModifier":4, "predator":false});
+var MILLIPEDE = new Enemy({"name":"Millipede", "danger":.2, "agilityModifier":.4, "energyModifier":4, "predator":false});
+var BEETLE = new Enemy({"name":"Beetle", "danger":.1, "agilityModifier":.8, "energyModifier":1.5, "predator":false});
+var DRAGONFLY = new Enemy({"name":"Dragonfly", "danger":.2, "agilityModifier":1.5, "energyModifier":3, "predator":false});
 var SCORPION = new Enemy({"name":"Scorpion", "danger":10, "energyModifier":.5, "predator":true});
 var BOB = new Enemy({"name":"Bob", "danger":.1, "agilityModifier":.01, "energyModifier":50, "predator":false});
 var MEGABOB = new Enemy({"name":"Megabob", "danger":100, "energyModifier":10, "predator":false});
@@ -259,6 +259,14 @@ var enemy4;
 /***** Objects *****/
 
 /*
+ * Use an info array to initialize the enemy. 
+ * info array:
+ * - name: name of enemy, capitalized first letter (eg. Beetle)
+ * - danger: how dangerous the enemy is
+ * - agilityModifier: modifies the agility by a multiplier
+ * - energyModifier: modifies the energy by a multiplier
+ * - aggressive: checks if the enemy will pounce or not 
+ * - desciption: description that will be printed out in the "You see..." string
  * 
  * @param {type} info
  * @returns {Enemy}
@@ -287,8 +295,13 @@ function Enemy(info) {
         this.energyModifier = info["energyModifier"];
     }
     
+    // TODO: fix this so it says aggressive instead
     if(info["predator"]) {
         this.aggressive = info["predator"];
+    }
+    
+    if(info["description"]) {
+        this.description = info["description"];
     }
 }
 
@@ -461,7 +474,7 @@ function attack(enemy) {
 }
 
 /*
- * 
+ * TODO: come back to this
  * @returns {Boolean}
  */
 function mate() {
@@ -515,6 +528,37 @@ function grow(energy) {
     if(currentWeight < metabolismLevelCap) {
         currentWeight = currentWeight + energy;
     }
+}
+
+/*
+ * Eat an egg if there is one. If there are no more eggs, no eating is allowed.
+ * Returns true if player successfully ate an egg.
+ * 
+ * @param {type} location
+ * @returns {Boolean}
+ */
+function eatEgg(location) {
+    // decrement egg count in respective nest
+    if(location.row === 4 && location.index === 0 && location.biome === EGGNEST) {
+        if(eggsNorthCount === 0) {
+            return false;
+        }
+        eggsNorthCount = eggsNorthCount - 1;
+    }
+    else if(location.row === 13 && location.index === 7 && location.biome === EGGNEST) {
+        if(eggsSouthCount === 0) {
+            return false;
+        }
+        eggsSouthCount = eggsSouthCount - 1;
+    }
+    else {
+        console.log("Not in an egg nest, how was this called? (eatEgg)");
+    }
+    
+    // The player is now full
+    currentEnergy = 100;
+    
+    return true;
 }
 
 /*
@@ -1144,6 +1188,23 @@ function displayCurrentPlayerInfo() {
     displayHealth(currentHealth);
 }
 
+function displayEatButton() {
+    $(".eat").css("display", "inline-block");
+}
+
+function hideEatButton() {
+    $(".eat").css("display", "none");
+}
+
+function toggleEatButton(location) {
+    if(location.biome === EGGNEST) {
+        displayEatButton();
+    }
+    else {
+        hideEatButton();
+    }
+}
+    
 $(document).ready(function() { 
     
     // display home
@@ -1168,15 +1229,17 @@ $(document).ready(function() {
                 idleTime = 0;
             }
             
-            console.log("Compass click: " + this.id);
-            var newPos = move(this.id);
-            moveMapMarker(currentLocation.row, currentLocation.index);
-
-            // Prints a description to top div
-            createDescription();
-            displayCurrentPlayerInfo();
-
+            // Player did not die from being pounced
             if(!pounceDeath) {
+                // move
+                var newPos = move(this.id);
+                moveMapMarker(currentLocation.row, currentLocation.index);
+                // if this is an egg nest, display eat button
+                toggleEatButton(currentLocation);
+                // Prints a description to top div
+                createDescription();
+                displayCurrentPlayerInfo();
+                
                 checkGameOver(currentEnergy, currentHealth);
             }
             
@@ -1200,12 +1263,14 @@ $(document).ready(function() {
         pounceDeath = pounceAll();
         idleTime++;
         
-        generateEnemies(currentLocation.row, currentLocation.index);
-        writeReloadDescription(lastEnemy);
-
-        displayCurrentPlayerInfo();
-        
+        // only move onto next step if enemy has not pounced and killed player
         if(!pounceDeath) {
+            // create enemies for area
+            generateEnemies(currentLocation.row, currentLocation.index);
+            // same enemy?
+            writeReloadDescription(lastEnemy);
+            // update UI
+            displayCurrentPlayerInfo();
             checkGameOver(currentEnergy, currentHealth);
         }
     
@@ -1516,7 +1581,7 @@ function writeGameOver(deathType) {
 }
 
 function writePounceResult(enemy, pounceSuccess) {
-    var desc = "A " + enemy.name.toLowerCase() + " pounces";
+    var desc = articleGenerator(enemy.name).toUpperCase() + " " + enemy.name.toLowerCase() + " pounces";
     
     if(pounceSuccess) {
         if(currentHealth <= 0) {
@@ -1574,6 +1639,25 @@ function testWriteRiverBorder() {
  */
 function getRandomNum(lower, upper) {
     return (Math.random() * upper) + lower;
+}
+
+/*
+ * Generate an article (a, an) for a word. Does not take into consideration 
+ * phenomes (eg. hour --> a hour).
+ * 
+ * @param {type} word
+ * @returns {String}
+ */
+function articleGenerator(word) {
+    var vowels = ["a", "e", "i", "o", "u"];
+    var firstChar = word.charAt(0).toLowerCase();
+    
+    for(var i = 0; i < vowels.length; i++) {
+        if(firstChar === vowels[i]) {
+            return "an";
+        }
+    }
+    return "a";
 }
 
 /*
