@@ -726,7 +726,7 @@ function pounceAll() {
         }
     }
     
-    if(currentHealth <= 0) {
+    if(currentHealth <= 0 && pounced === true) {
         gameOver(POUNCE);
         return true;
     }
@@ -1256,6 +1256,9 @@ $(document).ready(function() {
         console.log("Attacking " + this.parentNode.parentNode.id);
         attack(window[this.parentNode.parentNode.id]);
         
+        // died from attack?
+        var deathType = checkGameOver(currentEnergy, currentHealth);
+        
         // TODO: make it so some enemies remain?
         var lastEnemy = window[this.parentNode.parentNode.id];
         
@@ -1263,15 +1266,15 @@ $(document).ready(function() {
         pounceDeath = pounceAll();
         idleTime++;
         
+        // TODO: SERIOUSLY FIX THIS
         // only move onto next step if enemy has not pounced and killed player
-        if(!pounceDeath) {
+        if(!pounceDeath && deathType === NOT_DIE) {
             // create enemies for area
             generateEnemies(currentLocation.row, currentLocation.index);
             // same enemy?
             writeReloadDescription(lastEnemy);
             // update UI
             displayCurrentPlayerInfo();
-            checkGameOver(currentEnergy, currentHealth);
         }
     
         pb.flushBuffer();
@@ -1289,6 +1292,23 @@ $(document).ready(function() {
      */
     $(".info").click(function() {
         console.log("Infosheet");
+    });
+    
+    $(".eat").click(function() {
+        console.log("Eating");
+        eatEgg(currentLocation);
+        
+        // TODO: location, replace egg nest count, etc.
+        displayCurrentPlayerInfo();
+        
+        writeLocationDescription(currentLocation.row, currentLocation.index);
+        generateEnemies(currentLocation.row, currentLocation.index);
+        writeEatEgg();
+        writeEggDescription(currentLocation.row, currentLocation.index);
+        
+        idleTime++;
+        
+        pb.flushBuffer();
     });
     
     $("#restartgame").click(function() {
@@ -1510,10 +1530,20 @@ function writeEnemyDescription() {
 
 function writeEggDescription(row, index) {
     if(row === 4 && index === 0) {   // TODO: make specific to each nest
-        pb.writeBuffer("You see " + eggsNorthCount + " eggs in the nest. Eat one?");
+        if(eggsNorthCount === 0) {
+            pb.writeBuffer("The nest is empty.");
+        }
+        else {
+            pb.writeBuffer("You see " + eggsNorthCount + " eggs in the nest. Eat one?");
+        }
     }
     if(row === 13 && index === 7) {
-        pb.writeBuffer("You see " + eggsSouthCount + " eggs in the nest. Eat one?");
+        if(eggsSouthCount === 0) {
+            pb.writeBuffer("The nest is empty.");
+        }
+        else {
+            pb.writeBuffer("You see " + eggsSouthCount + " eggs in the nest. Eat one?");
+        }
     }
 }
 
@@ -1598,6 +1628,11 @@ function writePounceResult(enemy, pounceSuccess) {
     else {
         desc = desc + " but you manage to escape unharmed.";
     }
+}
+
+function writeEatEgg() {
+    var desc = "You eat an egg.";
+    pb.writeBuffer(desc);
 }
 /***** Tests *****/
 
