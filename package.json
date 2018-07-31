@@ -1,8 +1,11 @@
 {
-    "name": "Oarsun",
-    "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
-    "author": "christinedai",
-    "contributors": [],
-    "dependencies": {}
+  "name": "oarsun",
+  "version": "1.0.0",
+  "description": "Personal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lampridiforme",
+  "license": "ISC"
 }
